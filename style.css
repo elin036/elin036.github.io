@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f6f3f3;
+    text-align: center;
+    margin: 0px;
+    overflow-x: hidden;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.exo-2-font {
+  font-family: "Exo 2", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 100px;
+  font-style: normal;
+}
+
+hr {
+    grid-column: 2 / 18;
+    border: 0;
+    border-top: 1px solid rgb(59, 42, 59);
+}
+
+h1 {
+    color: #140f10;
+    text-align: left; 
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+    font-size: 40px;
+}
+
+h2 {
+    color: white;
+    font-size: 25px;
+}
+
+p {
+    color: #140f10;
+    text-align: center;
+    font-size: 20px;
+}
+
+img {
+    height: 200px;
+    width: auto;
+    border-radius: 8px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    grid-template-rows: repeat(18, 1fr);
+    height: 100vh;
+    width: 100vw;
+}
+
+.bar-container {
+    grid-column: 2 / 18;
+    grid-row: 1 / 3;
+    position: relative;
+}
+
+.intro-container {
+    grid-column: 2 / 18;
+    grid-row: 4 / 6;  
+}
+
+
+.hobby-container {
+    grid-column: 1 / 19;
+    grid-row: 6 / 19;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background-color: #a47c86;
+}
+
+.hobby-container .images {
+    margin: 0 auto;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    max-width: 60%;
+}
+
+.writing p {
+    color: #140f10;
+    margin: 0 15%;
+    padding-top: 25px;
+    text-align: left;
+    font-size: 20px;
+}
+
+.empty {
+    height: 100px;
+    background-color: #f6f3f3;
+}
