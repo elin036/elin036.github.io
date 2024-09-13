@@ -5,12 +5,22 @@ html {
   overflow: hidden;
 }
 
+@font-face {
+  font-family: 'CustomFont';
+  src: url('/images/moonhouse.ttf') format('truetype'),
+  url('/images/moonhouse.woff') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
+  font-family: 'CustomFont', sans-serif;
   background: radial-gradient(circle, #6f748c 10%, #353949 70%, #000000 100%);
 }
 
@@ -23,9 +33,15 @@ body {
 }
 
 #start-btn {
+  font-family: 'CustomFont', sans-serif;
   position: absolute;
-  top: 0;
-  left: 0;
+  border-radius: 70px;
+  padding: 10px 150px;
+  border-color: transparent;
+  background-color: rgb(255, 255, 255, 0.5);
+  font-size: 100px;
+  letter-spacing: 10px;
+  z-index: 10;
 }
 
 #earth {

@@ -19,6 +19,7 @@ for (let i = 0; i < 150; i++) {
 }
 
 document.getElementById('start-btn').addEventListener('click', function(event) {
+  document.getElementById('start-btn').style.display = 'none';
   event.stopPropagation();
   document.getElementById('earth-image').classList.add('shrinking');
   const hiddenElement = document.getElementById('hidden');
@@ -87,7 +88,6 @@ function positionMoon(angle) {
 }
 
 positionMoon(angle);
-// Resize event listener to reload the page
 window.addEventListener('resize', () => {
   window.location.reload();
 });
