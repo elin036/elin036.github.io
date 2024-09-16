@@ -6,7 +6,7 @@ html {
 }
 
 @font-face {
-  font-family: 'CustomFont';
+  font-family: 'moonhouse';
   src: url('/images/moonhouse.ttf') format('truetype'),
   url('/images/moonhouse.woff') format('truetype');
   font-weight: normal;
@@ -20,7 +20,7 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  font-family: 'CustomFont', sans-serif;
+  font-family: 'moonhouse', sans-serif;
   background: radial-gradient(circle, #6f748c 10%, #353949 70%, #000000 100%);
 }
 
@@ -33,7 +33,7 @@ body {
 }
 
 #start-btn {
-  font-family: 'CustomFont', sans-serif;
+  font-family: 'moonhouse', sans-serif;
   position: absolute;
   border-radius: 70px;
   padding: 10px 150px;
@@ -102,8 +102,6 @@ body {
 .fade-in {
   animation: fadeIn 1s ease-in-out forwards;
 }
-
-
 
 #moon {
   position: absolute;

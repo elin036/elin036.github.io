@@ -5,6 +5,7 @@ const ring = document.getElementById('ring');
 
 let isMoving = false;
 let angle = Math.PI;
+const hasRing = ring !== null;
 
 function createStar() {
   const star = document.createElement('div');
@@ -25,9 +26,30 @@ document.getElementById('start-btn').addEventListener('click', function(event) {
   const hiddenElement = document.getElementById('hidden');
   hiddenElement.style.visibility = 'visible';
   hiddenElement.classList.add('fade-in');
-  positionMoon(angle);
+  if (hasRing) {
+    positionMoonOnRing(angle);
+  }
 });
 
+// Set inital position for no ring
+document.addEventListener('DOMContentLoaded', function() {
+  const earthRect = earth.getBoundingClientRect();
+  const earthCenterX = earthRect.left + earthRect.width / 2;
+  const earthCenterY = earthRect.top + earthRect.height / 2;
+
+  if (!hasRing) {
+    moon.style.top = '40%';
+    moon.style.left = '30%';
+
+    const moonRect = moon.getBoundingClientRect();
+    const moonX = moonRect.left + moonRect.width / 2;
+    const moonY = moonRect.top + moonRect.height / 2;
+
+    adjustWave(earthCenterX, earthCenterY, moonX, moonY);
+  }
+});
+
+// If moon is clicked
 document.addEventListener('click', (event) => {
   const moonRect = moon.getBoundingClientRect();
   if (
@@ -40,23 +62,42 @@ document.addEventListener('click', (event) => {
   }
 });
 
+// Moving the mouse
 document.addEventListener('mousemove', (event) => {
   if (isMoving) {
-    const ringRect = ring.getBoundingClientRect();
-    const ringRadius = ringRect.width / 2;
+    if (hasRing) {
+      const ringRect = ring.getBoundingClientRect();
+      const ringRadius = ringRect.width / 2;
 
-    const earthCenterX = ringRect.left + ringRadius;
-    const earthCenterY = ringRect.top + ringRadius;
+      const earthCenterX = ringRect.left + ringRadius;
+      const earthCenterY = ringRect.top + ringRadius;
 
-    const deltaX = event.pageX - earthCenterX;
-    const deltaY = event.pageY - earthCenterY;
-    angle = Math.atan2(deltaY, deltaX);
+      const deltaX = event.pageX - earthCenterX;
+      const deltaY = event.pageY - earthCenterY;
+      angle = Math.atan2(deltaY, deltaX);
 
-    positionMoon(angle);
+      positionMoonOnRing(angle);
+    } 
+    else {
+      moveMoon(event.pageX, event.pageY);
+    }
   }
 });
 
-function positionMoon(angle) {
+// Doesn't have ring
+function moveMoon(mouseX, mouseY) {
+  moon.style.left = `${mouseX - moon.offsetWidth / 2}px`;
+  moon.style.top = `${mouseY - moon.offsetHeight / 2}px`;
+
+  const earthRect = earth.getBoundingClientRect();
+  const earthCenterX = earthRect.left + earthRect.width / 2;
+  const earthCenterY = earthRect.top + earthRect.height / 2;
+
+  adjustWave(earthCenterX, earthCenterY, mouseX, mouseY);
+}
+
+// Has ring
+function positionMoonOnRing(angle) {
   const ringRect = ring.getBoundingClientRect();
   const ringRadius = ringRect.width / 2;
 
@@ -73,13 +114,21 @@ function positionMoon(angle) {
   const distanceY = moonY - earthCenterY;
   const distance = Math.sqrt(distanceX ** 2 + distanceY ** 2);
 
-  const maxDistance = 400; // Maximum distance for full stretch
-  const minDistance = 200;  // Minimum distance for full shrink
-  const maxWaveWidth = 350; // Maximum wave width when the moon is closest
-  const minWaveWidth = 200; // Minimum wave width when the moon is farthest
+  adjustWave(earthCenterX, earthCenterY, moonX, moonY);
+}
+
+function adjustWave(earthCenterX, earthCenterY, moonX, moonY) {
+  const distanceX = moonX - earthCenterX;
+  const distanceY = moonY - earthCenterY;
+  const distance = Math.sqrt(distanceX ** 2 + distanceY ** 2);
+
+  const maxDistance = 400;
+  const minDistance = 200;
+  const maxWaveWidth = 350;
+  const minWaveWidth = 200;
 
   const waveWidth = Math.max(minWaveWidth, maxWaveWidth - (distance / maxDistance) * (maxWaveWidth - minWaveWidth));
-  
+
   wave.style.width = `${waveWidth}px`;
   wave.style.height = `200px`;
 
@@ -87,7 +136,6 @@ function positionMoon(angle) {
   wave.style.transform = `translate(-50%, -50%) rotate(${angleDeg}deg)`;
 }
 
-positionMoon(angle);
 window.addEventListener('resize', () => {
   window.location.reload();
 });
