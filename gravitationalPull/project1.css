@@ -1,0 +1,138 @@
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: 'moonhouse';
+  src: url('/images/moonhouse.ttf') format('truetype'),
+  url('/images/moonhouse.woff') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: 'moonhouse', sans-serif;
+  background: radial-gradient(circle, #6f748c 10%, #353949 70%, #000000 100%);
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+#start-btn {
+  font-family: 'moonhouse', sans-serif;
+  position: absolute;
+  border-radius: 70px;
+  padding: 10px 150px;
+  border-color: transparent;
+  background-color: rgb(255, 255, 255, 0.5);
+  font-size: 100px;
+  letter-spacing: 10px;
+  z-index: 10;
+}
+
+#earth {
+  width: 200px;
+  height: 200px;
+  background-color: transparent;
+  z-index: 2;
+}
+
+#earth-image {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.shrinking {
+  animation: shrink 2s ease forwards;
+}
+
+@keyframes shrink {
+  0% {
+    width: 400px;
+    height: 400px;
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+#hidden {
+  opacity: 0;
+  visibility: hidden; /* Hidden but still takes up space */
+  transition: visibility 0s; /* Visibility changes instantly */
+}
+
+/* Keyframe animation for fade-in with 50% step */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    visibility: visible; /* Start visible to allow opacity transition */
+  }
+  50% {
+    opacity: 0.5; /* Halfway opacity */
+    visibility: visible; /* Keep visible */
+  }
+  100% {
+    opacity: 1;
+    visibility: visible; /* End fully visible */
+  }
+}
+
+/* Class to trigger the fade-in animation */
+.fade-in {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+#moon {
+  position: absolute;
+  height: 100px;
+  width: auto;
+  cursor: pointer;
+}
+
+#ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  border: 2px dashed white;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+#wave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px; 
+  border-radius: 50%;
+  background: radial-gradient(circle, #002bc8 30%, #f3fbd0 80%);
+  transition: width 0.5s ease, height 0.5s ease;
+  z-index: 1;
+}
+
+
