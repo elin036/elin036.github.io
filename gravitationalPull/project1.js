@@ -31,6 +31,33 @@ document.getElementById('start-btn').addEventListener('click', function(event) {
   }
 });
 
+document.getElementById('sun-btn').addEventListener('click', function() {
+  this.style.display = 'none';
+  this.style.opacity = '0';
+  const hiddenSun = document.getElementById('hidden-sun');
+  hiddenSun.style.opacity = '1';
+  hiddenSun.style.visibility = 'visible';
+
+  const sun = document.getElementById('sun');
+  sun.classList.remove('slide-out');
+  sun.classList.add('slide-in');
+});
+
+document.getElementById('sun').addEventListener('click', function() {
+  this.classList.remove('slide-in');
+  this.classList.add('slide-out');
+
+  const sunBtn = document.getElementById('sun-btn');
+  
+  setTimeout(function() {
+    sunBtn.style.display = 'block'; 
+    setTimeout(function() {
+      sunBtn.style.opacity = '1';
+    }, 10);
+  });
+});
+
+
 // Set inital position for no ring
 document.addEventListener('DOMContentLoaded', function() {
   const earthRect = earth.getBoundingClientRect();

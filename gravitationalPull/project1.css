@@ -30,6 +30,7 @@ body {
   height: 2px;
   background-color: white;
   border-radius: 50%;
+  z-index: -1;
 }
 
 #start-btn {
@@ -48,7 +49,7 @@ body {
   width: 200px;
   height: 200px;
   background-color: transparent;
-  z-index: 2;
+  z-index: 1;
 }
 
 #earth-image {
@@ -58,7 +59,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 3;
+  z-index: 2;
 }
 
 .shrinking {
@@ -76,31 +77,91 @@ body {
   }
 }
 
-#hidden {
-  opacity: 0;
-  visibility: hidden; /* Hidden but still takes up space */
-  transition: visibility 0s; /* Visibility changes instantly */
+#sun-btn {
+  background-color: transparent;
+  border-color: transparent;
+  transition: opacity 2s ease;
+  opacity: 1;
 }
 
-/* Keyframe animation for fade-in with 50% step */
+.arrow {
+  background: white;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  margin: 15px;
+  position: absolute;
+  top: 42%;
+  left: 10%; 
+  transition: 0.4s ease;
+}
+
+.arrow:hover {
+  box-shadow: 0px 0px 5px 5px rgb(134, 140, 151);
+  cursor: pointer;
+}
+
+.arrow div {
+  height: 20px;
+  width: 20px;
+  border-top: 8px solid black;
+  border-left: 8px solid black;
+  border-radius: 5px;
+  transform: rotate(45deg);
+  position: absolute;
+  left: 25px;
+  top: 27.5px;
+}
+
+.right {
+  transform: rotate(90deg);
+}
+
+#hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0s;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
-    visibility: visible; /* Start visible to allow opacity transition */
+    visibility: visible;
   }
   50% {
-    opacity: 0.5; /* Halfway opacity */
-    visibility: visible; /* Keep visible */
+    opacity: 0.5;
   }
   100% {
     opacity: 1;
-    visibility: visible; /* End fully visible */
+    visibility: visible;
   }
 }
 
-/* Class to trigger the fade-in animation */
-.fade-in {
-  animation: fadeIn 1s ease-in-out forwards;
+#hidden-sun {
+  visibility: hidden;
+}
+
+#sun {
+  position: absolute;
+  height: 100%;
+  width: auto;
+  left: -50%;
+  top: 0;
+  cursor: pointer;
+  z-index: 2;
+  transition: left 1s ease;
+}
+
+#sun.slide-in {
+  left: -35%;
+}
+
+#sun.slide-out {
+  left: -50%;
 }
 
 #moon {
@@ -108,6 +169,7 @@ body {
   height: 100px;
   width: auto;
   cursor: pointer;
+  z-index: 2;
 }
 
 #ring {
@@ -119,7 +181,7 @@ body {
   height: 500px;
   border: 2px dashed white;
   border-radius: 50%;
-  z-index: 0;
+  z-index: 1;
 }
 
 #wave {
