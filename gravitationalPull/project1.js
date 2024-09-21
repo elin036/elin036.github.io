@@ -6,6 +6,7 @@ const ring = document.getElementById('ring');
 let isMoving = false;
 let angle = Math.PI;
 let sunNarration = false;
+let sunIsVisible = false;
 const hasRing = ring !== null;
 
 function createStar() {
@@ -21,22 +22,31 @@ for (let i = 0; i < 150; i++) {
 }
 
 // Set inital position
-document.addEventListener('DOMContentLoaded', function() {
-  const earthPos = earth.getBoundingClientRect();
-  const earthCenterX = earthPos.left + earthPos.width / 2;
-  const earthCenterY = earthPos.top + earthPos.height / 2;
+document.addEventListener('DOMContentLoaded', () => {
+  const hoverItems = document.querySelectorAll('.hover-item');
+  const tooltip = document.createElement('div');
+  tooltip.className = 'tooltip';
+  document.body.appendChild(tooltip);
 
-  if (!hasRing) {
-    moon.style.top = '40%';
-    moon.style.left = '30%';
+  hoverItems.forEach(item => {
+    item.addEventListener('mouseover', (e) => {
+      tooltip.innerText = item.getAttribute('data-name');
+      tooltip.style.display = 'block';
+      tooltip.style.left = `${e.pageX + 20}px`;
+      tooltip.style.top = `${e.pageY - 20}px`;
+    });
 
-    const MoonPos = moon.getBoundingClientRect();
-    const moonX = MoonPos.left + MoonPos.width / 2;
-    const moonY = MoonPos.top + MoonPos.height / 2;
+    item.addEventListener('mousemove', (e) => {
+      tooltip.style.left = `${e.pageX + 20}px`;
+      tooltip.style.top = `${e.pageY - 20}px`;
+    });
 
-    adjustWave(earthCenterX, earthCenterY, moonX, moonY);
-  }
+    item.addEventListener('mouseout', () => {
+      tooltip.style.display = 'none';
+    });
+  });
 });
+
 
 // Text narration
 function readText(textBox, narrationText) {
@@ -89,6 +99,10 @@ document.getElementById('start-btn').addEventListener('click', function(event) {
   if (hasRing) {
     positionMoonOnRing(angle);
   }
+  if(!sunIsVisible) {
+    const sunWave = document.querySelector('#sun-wave');
+    sunWave.style.display = "none";
+  }
 
   const narrationText = document.getElementsByClassName('narration-text')[0];
   const textBox = document.getElementsByClassName('text-box')[0];
@@ -100,6 +114,10 @@ document.getElementById('sun-btn').addEventListener('click', function() {
   this.style.display = 'none';
   this.style.opacity = '0';
 
+  sunIsVisible = true;
+  const sunWave = document.querySelector('#sun-wave');
+  sunWave.style.display = "block";
+
   const hiddenSun = document.getElementById('hidden-sun');
   hiddenSun.style.opacity = '1';
   hiddenSun.style.visibility = 'visible';
@@ -110,6 +128,11 @@ document.getElementById('sun-btn').addEventListener('click', function() {
 
   // Only narrate once
   if (!sunNarration) {
+    // Stop any on going speech
+    window.speechSynthesis.cancel();
+    const firstTextBox = document.getElementsByClassName('text-box')[0];
+    firstTextBox.style.display = 'none';
+
     const narrationText = document.getElementsByClassName('narration-text')[1];
     const textBox = document.getElementsByClassName('text-box')[1];
     readText(textBox, narrationText);
@@ -117,15 +140,23 @@ document.getElementById('sun-btn').addEventListener('click', function() {
     sunNarration = true;
   }
 
+
 });
 
 // Click sun for sun to disappear and arrow to appear
 document.getElementById('sun').addEventListener('click', function() {
   this.classList.remove('slide-in');
   this.classList.add('slide-out');
+  sunIsVisible = false;
+  const sunWave = document.querySelector('#sun-wave');
+  sunWave.style.display = "none";
 
   const sunBtn = document.getElementById('sun-btn');
   
+  window.speechSynthesis.cancel();
+  const secondTextBox = document.getElementsByClassName('text-box')[1];
+  secondTextBox.style.display = 'none';
+
   setTimeout(function() {
     sunBtn.style.display = 'block'; 
     setTimeout(function() {
@@ -202,7 +233,7 @@ function positionMoonOnRing(angle) {
 }
 
 function adjustWave(earthCenterX, earthCenterY, moonX, moonY) {
-  const maxDistance = 400;
+  const maxDistance = 500;
   const minDistance = 200;
   const maxWaveWidth = 350;
   const minWaveWidth = 200;

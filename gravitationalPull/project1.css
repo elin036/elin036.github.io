@@ -197,6 +197,19 @@ body {
   z-index: 1;
 }
 
+#sun-wave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 235px;
+  height: 200px; 
+  border-radius: 50%;
+  background: radial-gradient(circle, #c80000 30%, #f3fbd0 80%);
+  transition: width 0.5s ease, height 0.5s ease;
+  z-index: 2;
+}
+
 .text-box {
   position: fixed;
   top: 80%;        
@@ -209,4 +222,14 @@ body {
   font-size: 22px;
   text-align: center;
   z-index: 10;
+}
+
+.tooltip {
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  display: none;
+  z-index: 1000;
 }
