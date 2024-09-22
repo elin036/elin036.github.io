@@ -7,7 +7,7 @@ let isMoving = false;
 let angle = Math.PI;
 let sunNarration = false;
 let sunIsVisible = false;
-const hasRing = ring !== null;
+let hasRing = true;
 
 function createStar() {
   const star = document.createElement('div');
@@ -47,6 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+window.addEventListener('resize', () => {
+  window.location.reload();
+});
 
 // Text narration
 function readText(textBox, narrationText) {
@@ -86,28 +89,6 @@ function readText(textBox, narrationText) {
       narrateNextText();
   }, 1500);
 }
-
-document.getElementById('start-btn').addEventListener('click', function(event) {
-  this.style.display = 'none';
-  // In case the moon is clicked
-  event.stopPropagation();
-  document.getElementById('earth-image').classList.add('shrinking');
-
-  const hiddenElement = document.getElementById('hidden');
-  hiddenElement.style.visibility = 'visible';
-  hiddenElement.classList.add('fade-in');
-  if (hasRing) {
-    positionMoonOnRing(angle);
-  }
-  if(!sunIsVisible) {
-    const sunWave = document.querySelector('#sun-wave');
-    sunWave.style.display = "none";
-  }
-
-  const narrationText = document.getElementsByClassName('narration-text')[0];
-  const textBox = document.getElementsByClassName('text-box')[0];
-  readText(textBox, narrationText);
-});
 
 // Click arrow for sun to appear
 document.getElementById('sun-btn').addEventListener('click', function() {
@@ -165,6 +146,38 @@ document.getElementById('sun').addEventListener('click', function() {
   });
 });
 
+
+document.getElementById('start-btn').addEventListener('click', function(event) {
+  this.style.display = 'none'; // Hide the ring
+
+  // Check screen width and set hasRing accordingly
+  if (window.innerWidth <= 600) {
+    hasRing = false; // Set hasRing to false for mobile screens
+  }
+
+  // In case the moon is clicked
+  event.stopPropagation();
+  document.getElementById('earth-image').classList.add('shrinking');
+
+  const hiddenElement = document.getElementById('hidden');
+  hiddenElement.style.visibility = 'visible';
+  hiddenElement.classList.add('fade-in');
+
+  if (hasRing) {
+    positionMoonOnRing(angle);
+  }
+
+  if (!sunIsVisible) {
+    const sunWave = document.querySelector('#sun-wave');
+    sunWave.style.display = "none";
+  }
+
+  const narrationText = document.getElementsByClassName('narration-text')[0];
+  const textBox = document.getElementsByClassName('text-box')[0];
+  readText(textBox, narrationText);
+});
+
+
 // If moon is clicked
 document.addEventListener('click', (event) => {
   const MoonPos = moon.getBoundingClientRect();
@@ -217,6 +230,7 @@ function moveMoon(mouseX, mouseY) {
 
 // Has ring
 function positionMoonOnRing(angle) {
+
   const ringPos = ring.getBoundingClientRect();
   const ringRadius = ringPos.width / 2;
 
@@ -230,13 +244,28 @@ function positionMoonOnRing(angle) {
   moon.style.top = `${moonY - moon.offsetHeight / 2}px`;
 
   adjustWave(earthCenterX, earthCenterY, moonX, moonY);
+  
 }
 
 function adjustWave(earthCenterX, earthCenterY, moonX, moonY) {
-  const maxDistance = 500;
-  const minDistance = 200;
-  const maxWaveWidth = 350;
-  const minWaveWidth = 200;
+  // Get the screen width to determine responsiveness
+  const screenWidth = window.innerWidth;
+
+  // Set responsive values based on screen size
+  let maxDistance, minDistance, maxWaveWidth, minWaveWidth;
+
+  if (screenWidth <= 1440) {
+    maxDistance = 400;
+    minDistance = 100;
+    maxWaveWidth = 300;
+    minWaveWidth = 200;
+  } 
+  else {
+    maxDistance = 600;
+    minDistance = 200;
+    maxWaveWidth = 350;
+    minWaveWidth = 200;
+  }
 
   const distanceX = moonX - earthCenterX;
   const distanceY = moonY - earthCenterY;
@@ -252,9 +281,10 @@ function adjustWave(earthCenterX, earthCenterY, moonX, moonY) {
   wave.style.transform = `translate(-50%, -50%) rotate(${angleDeg}deg)`;
 }
 
-window.addEventListener('resize', () => {
-  window.location.reload();
-});
+/*
+
+
+*/
 
 
 

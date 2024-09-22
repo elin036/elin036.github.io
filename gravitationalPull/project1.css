@@ -59,7 +59,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: 5;
 }
 
 .shrinking {
@@ -149,12 +149,14 @@ body {
   position: absolute;
   height: 100%;
   width: auto;
-  left: -50%;
+  left: -100%; /* Center the element */
   top: 0;
+  transform: translateX(30%); /* Offset by half its width */
   cursor: pointer;
   z-index: 2;
   transition: left 1s ease;
 }
+
 
 #sun.slide-in {
   left: -35%;
@@ -173,6 +175,7 @@ body {
 }
 
 #ring {
+  display: block;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -232,4 +235,105 @@ body {
   border-radius: 5px;
   display: none;
   z-index: 1000;
+}
+/* Mobile Phones (up to 480px) */
+@media (max-width: 600px) {
+  #earth-image {
+    width: 200px;
+    height: 200px;
+  }
+
+  @keyframes shrink {
+    0% {
+      width: 300px;
+      height: 300px;
+    }
+    100% {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  #wave {
+    width: 250px;
+    height: 200px;
+  }
+
+  #sun-wave {
+    width: 250px;
+    height: 200px;
+  }
+
+  #ring, #drop-btn, .arrow {
+    display: none;
+  }
+
+  #moon {
+    top:10%;
+    left:10%;
+  }
+
+  #start-btn {
+    padding: 5px 50px;
+    font-size: 40px;
+    letter-spacing: 5px;
+  }
+
+  .text-box {
+    font-size: 16px;
+    padding: 5px 15px;
+    width: 80%;
+  }
+
+}
+
+/* Mobile Phones (up to 480px) */
+@media (min-width: 600px) and (max-width: 1000px) {
+  #earth-image {
+    width: 200px;
+    height: 200px;
+  }
+
+  @keyframes shrink {
+    0% {
+      width: 300px;
+      height: 300px;
+    }
+    100% {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  #wave {
+    width: 250px;
+    height: 200px;
+  }
+
+  #sun-wave {
+    width: 250px;
+    height: 200px;
+  }
+
+  #drop-btn, .arrow {
+    display: none;
+  }
+
+  #moon {
+    top:10%;
+    left:10%;
+  }
+
+  #start-btn {
+    padding: 5px 50px;
+    font-size: 40px;
+    letter-spacing: 5px;
+  }
+
+  .text-box {
+    font-size: 16px;
+    padding: 5px 15px;
+    width: 80%;
+  }
+
 }
