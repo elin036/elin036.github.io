@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candle Cove</title>
+    <link rel="stylesheet" href="shop.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baskervville+SC&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Candle <span style="color:rgb(79, 79, 12);">Cove</span></h1>
+        <hr>
+    </header>
+    
+    <nav>
+        <a href="#">Home</a>
+        <a href="#" class="active">Products</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <i class="fas fa-shopping-cart cart"></i>
+
+    <div class="filter-container">
+        <h2>Filter <span style="color:rgb(79, 79, 12);">Products </span></h2>
+        <div class="filter-group">
+            <h3>Category:</h3>
+            <ul class="filter-list">
+                <li class="active"><a href="#">All</a></li>
+                <li><a href="#">Scented</a></li>
+                <li><a href="#">Unscented</a></li>
+                <li><a href="#">Soy</a></li>
+                <li><a href="#">Beeswax</a></li>
+            </ul>
+        </div>
+        <div class="filter-group">
+            <h3>Price Range:</h3>
+            <input type="range" id="price" min="0" max="60">
+            <span>$0 - $60</span>
+        </div>
+    </div>
+
+    <div class="mobile">
+        <i style="font-size:24px; color:rgb(118, 118, 27);" class="fa">&#xf0b0;</i>
+        <div id="mobile-searchbar">
+            <input type="text" placeholder="Search..." id="searchInput">
+        </div>
+        <div id="hamburgerDiv">
+            <button id="hamburgerBtn" onclick="myDropdownFunction()">&#9776;</button>
+        </div>
+    </div>    
+
+    <main>
+        <div id="searchbar">
+            <input type="text" placeholder="Search..." id="searchInput">
+        </div>
+        <br>
+
+        <div class="product-grid">
+            <div class="product">
+                <img src="images/one.png" alt="Product 1">
+                <h3>Candle</h3>
+                <p>$19.99</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <button>Add to Cart</button>
+            </div>
+
+            <div class="product out">
+                <img src="images/foral.png" alt="Product 2">
+                <h3>Candle</h3>
+                <p>$29.99</p>
+                <button>Out of Stock</button>
+            </div>
+
+            <div class="product">
+                <img src="images/two.png" alt="Product 3">
+                <h3>Candle</h3>
+                <p>$39.99</p>
+                <button>Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <img src="images/round.png" alt="Product 4">
+                <h3>Candle</h3>
+                <p>$49.99</p>
+                <button>Add to Cart</button>
+            </div>
+
+            <div class="product out">
+                <img src="images/o.png" alt="Product 4">
+                <h3>Candle</h3>
+                <p>$49.99</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i> 
+                    <i class="fas fa-star"></i> 
+                    <i class="fas fa-star"></i> 
+                    <i class="fas fa-star"></i> 
+                    <i class="fas fa-star-half-alt"></i>
+                </div>            
+                <button>Out of Stock</button>
+            </div>
+
+            <div class="product">
+                <img src="images/cinammon.png" alt="Product 4">
+                <h3>Candle</h3>
+                <p>$49.99</p>
+                <button>Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <img src="images/beageniice.png" alt="Product 4">
+                <h3>Candle</h3>
+                <p>$49.99</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                </div> 
+                <button>Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <img src="images/lavendar.png" alt="Product 4">
+                <h3>Candle</h3>
+                <p>$49.99</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div> 
+                <button>Add to Cart</button>
+            </div>
+            
+            <div class="product">
+                <img src="images/leaf.png" alt="Product 4">
+                <h3>Candle</h3>
+                <p>$49.99</p>
+                <button>Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <img src="images/foral2.png" alt="Product 4">
+                <h3>Candle</h3>
+                <p>$49.99</p>
+                <button>Add to Cart</button>
+            </div>
+
+            <div class="product out">
+                <img src="images/ridges.png" alt="Product 4">
+                <h3>Candle</h3>
+                <p>$49.99</p>
+                <button>Out of Stock</button>
+            </div>
+
+            <div class="product">
+                <img src="images/pink.png" alt="Product 4">
+                <h3>Candle</h3>
+                <p>$49.99</p>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div> 
+                <button>Add to Cart</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Candle Cove. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

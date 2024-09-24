@@ -1,0 +1,282 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.titillium-web-regular {
+    font-family: "Titillium Web", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+body {
+    font-family:"Titillium Web", sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 10px;
+    text-align: center;
+}
+
+.cart {
+    position: absolute;
+    right: 2%; 
+    top: 3%;
+    font-size: 32px;
+}
+
+.active {
+    background-color: #dec964;
+    border-radius: 50px;
+    pointer-events: none;
+}
+
+hr {
+    border-top: 1px solid transparent;
+    color: black;
+    width: 25%;
+    border-image: 
+        linear-gradient(to right, 
+        black 70%, 
+        transparent 70%, transparent 80%, 
+        black 80%, black 85%,
+        transparent 85%, transparent 88%,
+        black 88%) 1;
+}
+
+nav {
+    margin: 15px 0;
+    text-align: center;
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    padding: 15px;
+    color: #323232;
+}
+
+nav a:hover {
+    background-color: #bdbdbd76;
+    color:black;
+    border-radius: 50px;
+}
+
+.mobile {
+    display: none;
+}
+
+#searchbar {
+    position: absolute;
+    right: 5%; 
+    top: 10%;
+}
+
+#searchInput {
+    box-sizing: border-box;
+    padding: 15px;
+    font-size: 20px;
+    height: 40px;
+    border: 2px solid #ccc;
+    border-radius: 50px;
+    max-width: 80%;
+}
+
+.filter-container {
+    position: absolute;
+    top: 28%;
+    left: 2%;
+    width: 15%;
+    z-index: 1;
+}
+
+.filter-group {
+    margin-bottom: 15px;
+}
+
+.filter-list {
+    list-style-type: none; 
+    padding: 0;
+    margin: 0; 
+}
+
+.filter-list li {
+    margin-bottom: 5px; 
+}
+
+.filter-list a {
+    text-decoration: none;
+    color: #333; 
+    display: block; 
+    padding: 8px; 
+    border-radius: 50px;
+}
+
+.filter-list a:hover {
+    background-color: #f0f0f0;
+}
+
+#price {
+    margin-top: 3px;
+    width: 100%;
+}
+
+@media (max-width: 1150px) {
+    #searchbar {
+        position: absolute;
+        right: -1%; 
+        top: 8%;
+    }
+    
+    #searchInput {
+        box-sizing: border-box;
+        padding: 15px;
+        font-size: 16px;
+        height: 40px;
+        border: 2px solid #ccc;
+        border-radius: 50px;
+        width: 60%;
+    }
+    .filter-container h2{
+        font-size: 20px;
+    }
+    .filter-container h3{
+        font-size: 18px;
+    }
+    .filter-container li{
+        font-size: 14px;
+    }
+    
+}
+
+@media (max-width: 900px) {
+    #hamburgerDiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #hamburgerBtn {
+        background-color: transparent;
+        font-size: 32px;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+    }
+    
+    #hamburgerBtn:hover {
+        background-color: #bdbdbd76;
+        border-radius: 10px;
+    }
+
+    #mobile-searchbar {
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        margin-left: 10px;
+    }
+
+    .mobile {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 auto;
+    }
+
+    nav {
+        display: none;
+    }
+
+    #searchbar {
+        display: none;
+    }
+
+    .filter-container{
+        display: none;
+    }
+
+    #searchInput {
+        box-sizing: border-box;
+        font-size: 16px;
+        height: 40px;
+        border: 2px solid #ccc;
+        border-radius: 50px;
+        width: 100%;
+    }
+    .cart {
+        position: absolute;
+        right: 3%; 
+        top: 3%;
+        font-size: 32px;
+    }
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 50px;
+    padding: 20px;
+    max-width: 60%;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.product {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    max-width: 250px;
+    margin-bottom: 10px;
+}
+
+.product button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #333333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.product:hover {
+    transform: scale(1.05);
+    -webkit-box-shadow: 1px 3px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 3px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 1px 3px 10px 0px rgba(0,0,0,0.75);
+}
+
+.product button:hover {
+    background-color: #b5a13e;
+}
+
+.out {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.rating {
+    color: rgb(157, 157, 30);
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    margin-top: 40px;
+}
